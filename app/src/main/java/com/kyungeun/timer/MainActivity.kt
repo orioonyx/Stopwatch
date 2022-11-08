@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var statusReceiver: BroadcastReceiver
     private lateinit var timeReceiver: BroadcastReceiver
 
+    private var isResetCheck = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -107,48 +109,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
+        isResetCheck = false
         val timerService = Intent(this, TimerService::class.java)
         timerService.putExtra(TimerService.TIMER_ACTION, TimerService.START)
         startService(timerService)
     }
 
     private fun pauseTimer() {
+        isResetCheck = false
         val timerService = Intent(this, TimerService::class.java)
         timerService.putExtra(TimerService.TIMER_ACTION, TimerService.PAUSE)
         startService(timerService)
     }
 
     private fun resetTimer() {
+        isResetCheck = true
         val timerService = Intent(this, TimerService::class.java)
         timerService.putExtra(TimerService.TIMER_ACTION, TimerService.RESET)
         startService(timerService)
     }
 
     private fun moveToForeground() {
-        val timerService = Intent(this, TimerService::class.java)
-        timerService.putExtra(
-            TimerService.IS_TIMER_FOREGROUND_PAUSE,
-            checkPause()
-        )
-        timerService.putExtra(
-            TimerService.TIMER_ACTION,
-            TimerService.MOVE_TO_FOREGROUND
-        )
-        startService(timerService)
+        if (!isResetCheck) {
+            val timerService = Intent(this, TimerService::class.java)
+            timerService.putExtra(TimerService.TIMER_ACTION, TimerService.MOVE_TO_FOREGROUND)
+            startService(timerService)
+        }
     }
 
     private fun moveToBackground() {
         val timerService = Intent(this, TimerService::class.java)
-        timerService.putExtra(
-            TimerService.TIMER_ACTION,
-            TimerService.MOVE_TO_BACKGROUND
-        )
+        timerService.putExtra(TimerService.TIMER_ACTION, TimerService.MOVE_TO_BACKGROUND)
         startService(timerService)
     }
 
-    private fun checkPause(): Boolean {
-        if(TimerService.TIMER_ACTION == TimerService.PAUSE) return true
-        return false
-    }
 
 }

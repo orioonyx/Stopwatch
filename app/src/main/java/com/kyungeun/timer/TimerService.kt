@@ -1,5 +1,6 @@
 package com.kyungeun.timer
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.Intent
 import android.graphics.Color
@@ -7,7 +8,6 @@ import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import timber.log.Timber
 import java.util.*
 
 class TimerService : Service() {
@@ -31,8 +31,6 @@ class TimerService : Service() {
         // Intent Actions
         const val TIMER_TICK = "TIMER_TICK"
         const val TIMER_STATUS = "TIMER_STATUS"
-
-        const val IS_TIMER_FOREGROUND_PAUSE = "IS_TIMER_FOREGROUND_PAUSE"
     }
 
     private var timeElapsed: Int = 0
@@ -64,21 +62,15 @@ class TimerService : Service() {
     }
 
     private fun moveToForeground() {
-        Timber.d("moveToForeground $TIMER_ACTION $isTimerRunning $IS_TIMER_FOREGROUND_PAUSE")
-        if (isTimerRunning) {
-            startForeground(1, buildNotification())
-            updateTimer = Timer()
+        startForeground(1, buildNotification())
 
+        if (isTimerRunning) {
+            updateTimer = Timer()
             updateTimer.scheduleAtFixedRate(object : TimerTask() {
                 override fun run() {
                     updateNotification()
                 }
             }, 0, 1000)
-        } else {
-
-                startForeground(1, buildNotification())
-
-
         }
     }
 
@@ -147,6 +139,7 @@ class TimerService : Service() {
         ) as NotificationManager
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private fun buildNotification(): Notification {
         val title = if (isTimerRunning) {
             "Timer is running!"
@@ -187,8 +180,7 @@ class TimerService : Service() {
         )
     }
 
-    override fun onDestroy()
-    {
+    override fun onDestroy() {
         timer.cancel()
         super.onDestroy()
     }
