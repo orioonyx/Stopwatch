@@ -1,4 +1,4 @@
-package com.kyungeun.backgroundtimer
+package com.kyungeun.timer
 
 import org.junit.Test
 

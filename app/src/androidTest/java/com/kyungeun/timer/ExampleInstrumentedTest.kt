@@ -1,4 +1,4 @@
-package com.kyungeun.backgroundtimer
+package com.kyungeun.timer
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
