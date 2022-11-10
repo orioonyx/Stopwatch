@@ -1,4 +1,5 @@
 # Android Timer With Foreground Service
+
 A sample android timer app using **foreground service**!
 
 ## Preview
@@ -15,7 +16,7 @@ Developed By
 
 License
 ------------------------------------
-    Copyright 2022 shruddms
+    Copyright 2022 NoKyungEun
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

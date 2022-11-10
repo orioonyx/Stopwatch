@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -132,7 +133,11 @@ class MainActivity : AppCompatActivity() {
         if (!isResetCheck) {
             val timerService = Intent(this, TimerService::class.java)
             timerService.putExtra(TimerService.TIMER_ACTION, TimerService.MOVE_TO_FOREGROUND)
-            startService(timerService)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(timerService)
+            } else {
+                startService(timerService)
+            }
         }
     }
 
@@ -141,6 +146,4 @@ class MainActivity : AppCompatActivity() {
         timerService.putExtra(TimerService.TIMER_ACTION, TimerService.MOVE_TO_BACKGROUND)
         startService(timerService)
     }
-
-
 }
