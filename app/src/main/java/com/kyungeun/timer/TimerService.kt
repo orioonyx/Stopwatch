@@ -181,4 +181,11 @@ class TimerService : Service() {
         timer.cancel()
         super.onDestroy()
     }
+
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        updateTimer.cancel()
+        stopForeground(true)
+        stopSelf()
+        super.onTaskRemoved(rootIntent)
+    }
 }

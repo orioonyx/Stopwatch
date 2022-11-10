@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             val timerService = Intent(this, TimerService::class.java)
             timerService.putExtra(TimerService.TIMER_ACTION, TimerService.MOVE_TO_FOREGROUND)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(timerService)
+                ContextCompat.startForegroundService(this,timerService)
             } else {
                 startService(timerService)
             }
