@@ -83,11 +83,10 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun updateTimerLayout(timeElapsed: Int) {
-        val hours: Int = (timeElapsed / 60) / 60
-        val minutes: Int = timeElapsed / 60
-        val seconds: Int = timeElapsed % 60
-        binding.tvTimer.text =
-            "${"%02d".format(hours)}:${"%02d".format(minutes)}:${"%02d".format(seconds)}"
+        val hours = timeElapsed % 86400 / 3600
+        val minutes = timeElapsed % 86400 % 3600 / 60
+        val seconds = timeElapsed % 86400 % 3600 % 60
+        binding.tvTimer.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 
     private fun updateLayout(isTimerRunning: Boolean) {

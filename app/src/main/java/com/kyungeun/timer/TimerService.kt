@@ -147,9 +147,10 @@ class TimerService : Service() {
             "Timer is paused!"
         }
 
-        val hours: Int = timeElapsed.div(60).div(60)
-        val minutes: Int = timeElapsed.div(60)
-        val seconds: Int = timeElapsed.rem(60)
+        val hours = timeElapsed % 86400 / 3600
+        val minutes = timeElapsed % 86400 % 3600 / 60
+        val seconds = timeElapsed % 86400 % 3600 % 60
+        val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
 
         val intent = Intent(this, MainActivity::class.java)
         val pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
@@ -158,11 +159,7 @@ class TimerService : Service() {
             .setContentTitle(title)
             .setOngoing(true)
             .setContentText(
-                "${"%02d".format(hours)}:${"%02d".format(minutes)}:${
-                    "%02d".format(
-                        seconds
-                    )
-                }"
+                time
             )
             .setColorized(true)
             .setColor(Color.parseColor("#a8d4ff"))

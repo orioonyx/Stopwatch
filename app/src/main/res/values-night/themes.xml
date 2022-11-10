@@ -7,8 +7,8 @@
         <item name="colorSecondary">@color/black</item>
         <item name="colorSecondaryVariant">@color/black</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:statusBarColor" >@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
 
     <style name="Theme.BackgroundTimer.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
