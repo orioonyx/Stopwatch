@@ -6,6 +6,7 @@ A sample android timer app using **foreground service**!
 ![timer](https://user-images.githubusercontent.com/74607521/201037666-69fa6dca-ea19-457c-bcc1-8959e0877370.gif)
 <br>
 ### Notification
+Example of a notification due to a foreground service
 <img src="https://user-images.githubusercontent.com/74607521/201038763-4379b2cf-3377-4dc9-b40b-91b1c6af811e.gif" width=50%>
 <br><br>
 
