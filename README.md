@@ -1,6 +1,6 @@
 # Android Timer
 
-A sample android timer app using **foreground service**!
+A sample android timer app using **service**!
 <br>
 ## Preview ✨
 ![timer](https://user-images.githubusercontent.com/74607521/201037666-69fa6dca-ea19-457c-bcc1-8959e0877370.gif)
