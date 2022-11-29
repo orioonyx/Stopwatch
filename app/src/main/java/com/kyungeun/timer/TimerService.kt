@@ -66,11 +66,15 @@ class TimerService : Service() {
 
         if (isTimerRunning) {
             updateTimer = Timer()
-            updateTimer.scheduleAtFixedRate(object : TimerTask() {
-                override fun run() {
-                    updateNotification()
-                }
-            }, 0, 1000)
+            updateTimer.scheduleAtFixedRate(
+                object : TimerTask() {
+                    override fun run() {
+                        updateNotification()
+                    }
+                },
+                0,
+                1000
+            )
         }
     }
 
@@ -85,17 +89,21 @@ class TimerService : Service() {
         sendStatus()
 
         timer = Timer()
-        timer.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                val timerIntent = Intent()
-                timerIntent.action = TIMER_TICK
+        timer.scheduleAtFixedRate(
+            object : TimerTask() {
+                override fun run() {
+                    val timerIntent = Intent()
+                    timerIntent.action = TIMER_TICK
 
-                timeElapsed++
+                    timeElapsed++
 
-                timerIntent.putExtra(TIME_ELAPSED, timeElapsed)
-                sendBroadcast(timerIntent)
-            }
-        }, 0, 1000)
+                    timerIntent.putExtra(TIME_ELAPSED, timeElapsed)
+                    sendBroadcast(timerIntent)
+                }
+            },
+            0,
+            1000
+        )
     }
 
     private fun pauseTimer() {
@@ -158,11 +166,9 @@ class TimerService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setOngoing(true)
-            .setContentText(
-                time
-            )
+            .setContentText(time)
             .setColorized(true)
-            .setColor(Color.parseColor("#a8d4ff"))
+            .setColor(Color.parseColor("#c2e1ff"))
             .setSmallIcon(R.drawable.ic_timer)
             .setOnlyAlertOnce(true)
             .setContentIntent(pIntent)
