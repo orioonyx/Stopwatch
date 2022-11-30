@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jlleitschuh.gradle.ktlint'
 }
 
 android {
@@ -32,11 +33,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-    configurations {
-        ktlint
-    }
     namespace 'com.kyungeun.timer'
 }
+
 
 dependencies {
 
@@ -52,27 +51,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     implementation 'com.jakewharton.timber:timber:5.0.1'
-
-    ktlint("com.pinterest:ktlint:0.47.1") {
-        attributes {
-            attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
-        }
-    }
-}
-task ktlint(type: JavaExec, group: "verification") {
-    description = "Check Kotlin code style."
-    classpath = configurations.ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args "src/**/*.kt"
-    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
-}
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec, group: "formatting") {
-    description = "Fix Kotlin code style deviations."
-    classpath = configurations.ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args "-F", "src/**/*.kt"
-    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
 }
 

@@ -1,16 +1,22 @@
 package com.kyungeun.timer
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 class TimerService : Service() {
+
     companion object {
         // Channel ID for notifications
         const val CHANNEL_ID = "Timer_Notifications"
