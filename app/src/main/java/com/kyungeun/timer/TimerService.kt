@@ -63,7 +63,6 @@ class TimerService : Service() {
             MOVE_TO_FOREGROUND -> moveToForeground()
             MOVE_TO_BACKGROUND -> moveToBackground()
         }
-
         return START_STICKY
     }
 
