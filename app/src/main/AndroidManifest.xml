@@ -18,11 +18,12 @@
         <service
             android:name=".TimerService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             android:stopWithTask ="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.BackgroundTimer.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

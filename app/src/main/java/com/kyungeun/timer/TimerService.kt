@@ -167,7 +167,7 @@ class TimerService : Service() {
         val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
 
         val intent = Intent(this, MainActivity::class.java)
-        val pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
@@ -191,10 +191,14 @@ class TimerService : Service() {
 
     override fun onDestroy() {
         timer.cancel()
+        updateTimer.cancel()
+        stopForeground(true)
+        stopSelf()
         super.onDestroy()
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
+        timer.cancel()
         updateTimer.cancel()
         stopForeground(true)
         stopSelf()

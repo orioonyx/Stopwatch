@@ -1,9 +1,10 @@
-# Android Timer
+# Android Stopwatch
 
-A sample android timer app using **service**!
+A sample android stopwatch app using **service**!
+<br>
 <br>
 ## Preview ✨
-![timer](https://user-images.githubusercontent.com/74607521/201037666-69fa6dca-ea19-457c-bcc1-8959e0877370.gif)
+![stopwatch](https://user-images.githubusercontent.com/74607521/201037666-69fa6dca-ea19-457c-bcc1-8959e0877370.gif)
 <br><br><br>
 ### Notification 🛎️
 Example of a notification due to a foreground service.

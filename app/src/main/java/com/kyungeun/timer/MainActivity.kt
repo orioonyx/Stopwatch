@@ -82,6 +82,13 @@ class MainActivity : AppCompatActivity() {
         moveToForeground()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (!isTimerRunning) {
+            resetTimer()
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun updateTimerLayout(timeElapsed: Int) {
         val hours = timeElapsed % 86400 / 3600
